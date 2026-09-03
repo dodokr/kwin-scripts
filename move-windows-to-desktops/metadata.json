@@ -1,0 +1,20 @@
+{
+    "KPlugin": {
+        "Name": "Move Windows to Desktops",
+        "Description": "Move the active window to the previous/next desktop, wrapping around at the edges.",
+        "Icon": "preferences-system-windows",
+
+        "Authors": [
+            {
+                "Name": "dodokr"
+            }
+        ],
+        "Id": "move-windows-to-desktops",
+        "Version": "1.0",
+        "License": "GPLv3",
+        "Website": "https://github.com/dodokr/kwin-scripts"
+    },
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js",
+    "KPackageStructure": "KWin/Script"
+}
