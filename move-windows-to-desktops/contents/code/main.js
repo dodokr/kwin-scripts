@@ -24,11 +24,14 @@ function moveWindowDelta(delta) {
     }
 
     var cur = isKWIN6 ? workspace.currentDesktop.x11DesktopNumber : workspace.currentDesktop;
-    // Desktop numbers are 1-based; destination in 0-based modulo space.
-    var dest = mod(cur - 1 + delta, numDesktops) + 1;
+    // Desktop numbers are 1-based, transform to 0-base
+    var dest = mod(cur - 1 + delta, numDesktops);
 
     if (isKWIN6) {
-        var destDesktop = desktops[dest];
+        var destDesktop = desktops[dest]; // this is 0-based. Bruh
+        if (!destDesktop) {
+            return;
+        }
         thisWin.desktops = [destDesktop];
         workspace.currentDesktop = destDesktop;
     } else {
