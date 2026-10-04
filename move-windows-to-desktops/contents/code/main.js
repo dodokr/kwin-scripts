@@ -34,6 +34,9 @@ function moveWindowDelta(delta) {
         }
         thisWin.desktops = [destDesktop];
         workspace.currentDesktop = destDesktop;
+        // Activating the window also raises it, so it isn't left behind the
+        // other windows on the destination desktop.
+        workspace.activeWindow = thisWin;
     } else {
         // KWin 5: step one desktop at a time with the previous/next slots.
         // The approach the original script's author used and had working.
