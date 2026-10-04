@@ -1,0 +1,20 @@
+{
+    "KPlugin": {
+        "Name": "Screen Focus OSD",
+        "Description": "Show a short pop/squish popup with the screen number centered on the screen that just got focus.",
+        "Icon": "preferences-desktop-display",
+
+        "Authors": [
+            {
+                "Name": "dodokr"
+            }
+        ],
+        "Id": "screenfocusosd",
+        "Version": "1.0",
+        "License": "GPLv3",
+        "Website": "https://github.com/dodokr/kwin-scripts"
+    },
+    "X-Plasma-API": "declarativescript",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "KPackageStructure": "KWin/Script"
+}
