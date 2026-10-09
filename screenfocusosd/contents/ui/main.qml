@@ -6,6 +6,9 @@
 // It listens to Workspace.windowActivated and fires when the newly active
 // window is on a different output than the previous one. Switching to an
 // empty screen activates no window, so no popup is shown in that case.
+//
+// A "Show Current Screen" shortcut (unbound by default) shows the same popup
+// on demand for the current screen, e.g. to check where you are.
 
 import QtQuick
 import org.kde.kwin
@@ -40,6 +43,17 @@ Item {
         anim.start();
     }
 
+    // Popup for whichever screen is current right now (used by the shortcut).
+    function showCurrent() {
+        var output = Workspace.activeScreen
+            || (Workspace.activeWindow ? Workspace.activeWindow.output : null)
+            || Workspace.screens[0];
+        if (!output)
+            return;
+        lastOutput = output;
+        show(output);
+    }
+
     Connections {
         target: Workspace
         function onWindowActivated(window) {
@@ -48,6 +62,16 @@ Item {
             root.lastOutput = window.output;
             root.show(window.output);
         }
+    }
+
+    // Unbound by default: assign a key in System Settings → Keyboard →
+    // Shortcuts → KWin ("Show Current Screen"). Uses the same dialog as the
+    // focus-change popup, so the two can never be on screen at the same time.
+    ShortcutHandler {
+        name: "Show Current Screen"
+        text: "Show Current Screen"
+        sequence: ""
+        onActivated: root.showCurrent()
     }
 
     PlasmaCore.Dialog {
